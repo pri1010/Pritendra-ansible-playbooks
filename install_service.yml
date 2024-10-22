@@ -1,14 +1,11 @@
 ---
 # File: install_service.yml
-# Description: Playbook to install and start a service
-# Usage: ansible-playbook install_service.yml
 
 - name: Install and Start Service
   hosts: localhost
   become: true
 
   vars:
-    # Define your service variables here
     service_name: httpd
     package_name: httpd
 
