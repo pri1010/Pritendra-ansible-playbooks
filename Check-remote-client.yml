@@ -1,0 +1,15 @@
+---
+# File: check_connectivity.yml
+- name: Check Remote Host Connectivity
+  hosts: all  # This will check all hosts in your inventory
+  gather_facts: no  # Speeds up execution
+
+  tasks:
+    - name: Ping remote hosts
+      ping:
+      register: ping_result
+
+    - name: Display ping results
+      debug:
+        msg: "Host {{ inventory_hostname }} is reachable"
+      when: ping_result is succeeded
