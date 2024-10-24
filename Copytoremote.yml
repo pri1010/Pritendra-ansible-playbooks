@@ -1,0 +1,26 @@
+---
+# Playbook to copy a file from the local machine to remote clients
+
+- name: It copies a file from local to remote clients
+  # The name of the playbook for easy identification
+  hosts: all
+  # Specifies the target hosts to run the playbook on (e.g., 'all' means all hosts in your inventory)
+  tasks:
+    # List of tasks that will be executed on the target hosts
+
+    - name: Copying file from local to remote
+      # The name of the task for easy tracking
+      become: true
+      # Ensures the task is executed with elevated (root) privileges
+      copy:
+        # The copy module is used to copy files(e.g file sam.cfg) from the local system to the remote hosts
+        src: /home/ubuntu/sam.cfg
+        # Path to the source file on the local machine
+        dest: /home/ubuntu/sam.cfg
+        # Destination path on the remote host where the file will be copied
+        owner: ubuntu
+        # Sets the owner of the file to 'ubuntu' on the remote host
+        group: ubuntu
+        # Sets the group ownership of the file to 'ubuntu'
+        mode: '0644'
+        # Sets the file permission to 0644 (read and write for the owner, read-only for others)
